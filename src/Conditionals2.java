@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.Contract;
+
 public class Conditionals2 {
 
     public static boolean isLeapYear(int year)
@@ -140,13 +142,22 @@ public class Conditionals2 {
     }
     public static boolean makeBench(int small, int big, int goal)
     {
-        if (small + big * 5 == goal)
+        int g1 = goal % 5;
+        int g5 = (goal - g1) / 5 ;
+
+        if (small < g1)
+        { return false; }
+
+        else if (g1 <= small && g5 <= big)
+        { return true; }
+
+        else if (g5 <= big)
         {
-            return true;
+            return small >= g1;
         }
         else
         {
-            return false;
+            return big * 5 + small >= goal;
         }
     }
 
